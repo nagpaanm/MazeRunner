@@ -33,14 +33,14 @@ $(function () {
 
     $instructions.delay(500).fadeIn(1000);
     //Move Player -------------------------------------------------------------
-    $("#left").mousedown(function(){
+    $("#left").on("mousedown touchstart", function(){
         $gameStart = true;
         timeout = setInterval(function(){
             moveLeft();
         }, 65);
     });
     
-    $("#right").mousedown(function(){
+    $("#right").on("mousedown touchstart", function(){
         $gameStart = true;
         timeout = setInterval(function(){
             moveRight();
@@ -74,7 +74,8 @@ $(function () {
                 $player.css("left", "+=" + $pSpeed);
         }
     }
-    $(document).mouseup(function(){
+    
+    $(document).on("mouseup touchend", function(){
         clearInterval(timeout);
     });
     
