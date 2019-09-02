@@ -10,7 +10,11 @@ body{
     font-family:cursive;
 }
 main{
+    position:relative;
     text-transform: uppercase;
+    width:50%;
+    min-width:480px;
+    margin:auto;
 }
 main > h1{
     text-align:center;
@@ -22,7 +26,6 @@ main > h1{
 #screen{
     position:relative;
     outline: 1px solid black;
-    width:640px;
     height:480px;
     overflow:hidden;
     background-color:white;
@@ -32,7 +35,7 @@ main > h1{
 #player{
     position:absolute;
     top:400px;
-    left:295px;
+    left:50%;
     width:35px;
     height:35px;
     background-color:black;
@@ -52,23 +55,21 @@ main > h1{
 
 #enemyLeft{
     left:0;
-    width:250px;
+    width:30%;
 }
 
 #enemyRight{
     right:0;
-    width:250px;
+    width:30%;
 }
 
 #board{
     position:relative;
     outline:3px solid black;
-    width:640px;
     height:70px;
     background-color:black;
     color:white;
     font-weight:lighter;
-    margin:auto;
 }
 
 #score{
@@ -92,6 +93,25 @@ main > h1{
     top:22px;
     font-size:1em;
     font-weight:lighter;
+}
+#control-panel{
+    text-align:center;
+    margin: 1% 0;
+}
+#control-panel *{
+    display:inline-block;
+    font-size:2.5em;
+    background-color:rgb(219, 70, 59);
+    padding: 0px 50px;
+    border-radius:50px;
+    user-select:none;
+}
+
+#control-panel *:hover{
+    cursor:grab;
+    transform:scale(1.1,1.1);
+    border:2px solid black;
+    transition: transform 0.5s, border 1s;
 }
 
 footer{

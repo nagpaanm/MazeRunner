@@ -27,29 +27,71 @@ $(function () {
     var $speed = $("#speed > span");
     var $wSpeed = $("#eSpeed > span");
     var $instructions = $("#instructions");
+    var timeout;
+
     //-------------------------------------------------------------------------
 
     $instructions.delay(500).fadeIn(1000);
     //Move Player -------------------------------------------------------------
+    $("#left").mousedown(function(){
+        $gameStart = true;
+        timeout = setInterval(function(){
+            moveLeft();
+        }, 65);
+    });
+    
+    $("#right").mousedown(function(){
+        $gameStart = true;
+        timeout = setInterval(function(){
+            moveRight();
+        }, 65);
+    });
+    /*
+    $("#left").click(function(){
+        $gameStart = true;
+        if(!mouseDown){
+            moveLeft();
+        }
+    });
+    
+    $("#right").click(function(){
+        $gameStart = true;
+        if(!mouseDown){
+            moveRight();
+        }
+    });
+    */
+    function moveLeft(){
+        if ($playerPosition.left >= 1 && $gameEnd === false) {
+                $player.css("left", "-=" + $pSpeed);
+        }
+    }
+    
+    function moveRight(){
+        $playerPosition = $player.position();
+        if ($playerPosition.left + $player.width() <= ($screenSize - 1)
+                        && $gameEnd === false) {
+                $player.css("left", "+=" + $pSpeed);
+        }
+    }
+    $(document).mouseup(function(){
+        clearInterval(timeout);
+    });
+    
     $(document).keydown(function (e) {
         $gameStart = true;
         $instructions.delay(500).fadeOut(1000);
         $playerPosition = $player.position();
         switch (e.which) {
             case 37: //left
-                if ($playerPosition.left >= 1 && $gameEnd === false) {
-                    $player.css("left", "-=" + $pSpeed);
-                }
+                moveLeft();
                 break;
 
             case 39: //right
-                if ($playerPosition.left + $player.width() <= ($screenSize - 1)
-                        && $gameEnd === false) {
-                    $player.css("left", "+=" + $pSpeed);
-                }
+                moveRight();
                 break;
         }
-    })
+    });
     //-------------------------------------------------------------------------
 
 
@@ -113,10 +155,10 @@ $(function () {
             $speed.html($pSpeed);
             $wSpeed.html($eSpeed);
             $enemyLeft.css("left", "0");
-            $enemyLeft.css("width", "250px");
+            $enemyLeft.css("width", "30%");
             $enemyRight.css("right", "0");
-            $enemyRight.css("width", "250px");
-            $player.css("left", "295px");
+            $enemyRight.css("width", "30%");
+            $player.css("left", "45%");
             $enemy.css("top", "0");
             $player.css("box-shadow", "0px 0px 0px 0px red");
             $player.css("background-color", "black");
